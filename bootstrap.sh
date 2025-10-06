@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 #
-# SPDX-FileCopyrightText: ©2021-2025 franklin <franklin@bitsmasher.net>
+# SPDX-FileCopyrightText: 2021-2025 franklin <smoooth.y62wj@passmail.net>
 #
 # SPDX-License-Identifier: MIT
-
-# ChangeLog:
 #
 # v0.1 02/25/2022 Maintainer script
 # v0.2 09/24/2022 Update this script
@@ -43,13 +41,9 @@ LPURP='\033[1;35m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# --- Some config Variables ----------------------------------------
 CONTAINER=false
 DEB_PKG=(direnv git podman-toolbox nginx certbot)
 GO_VERSION="$(go version | awk '{print $3}')"
-MY_OS="unknown"
-OS_RELEASE="unknown"
-RHEL_PKG=(git)
 
 function log_header() {
   printf "\n${LPURP}# --- %s ${NC}\n" "$1"
@@ -85,7 +79,7 @@ function install_debian() {
     apt-get update && apt-get upgrade -y
   fi
 
-  for i in ${DEB_PKG[@]}; do
+  for i in "${DEB_PKG[@]}"; do
     PKG_OK=$(dpkg-query -W --showformat='${Status}\n' ${i} | grep "install ok installed") &>/dev/null
     # echo -e "${LBLUE}Checking for ${i}: ${PKG_OK}${NC}"
     if [ "" = "${PKG_OK}" ]; then
