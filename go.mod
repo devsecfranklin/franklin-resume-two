@@ -1,4 +1,4 @@
-module bitsmasher.net/franklin-resume
+module bitsmasher.net/franklin-resume-two
 
 go 1.24.4
 
